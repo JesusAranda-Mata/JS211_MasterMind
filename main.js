@@ -28,13 +28,34 @@ const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-const generateHint = () =>  {
+const generateHint = (guess) =>  {
+  /*-----
+  The split() method divides a String into an ordered list of substrings,
+   puts these substrings into an array, and returns the array.
+  -------*/
   // your code here
+  let solutionArray = solution.split('');
+  let guessArray = guess.split('');
+  let correctLetterLocations = 0;
+  let correctLetter = 0;
+  for(let i = 0; i < solutionArray.length; i++){
+      if(solutionArray.indexOf(i) == guessArray.indexOf(i)){
+        1 += correctLetterLocations
+        console.log(correctLetterLocation);
+        null =+ solutionArray 
+      }
+  }
+  for(let i = 0; i < solutionArray.length; i++){
+      if(guessArray.indexOf() == solutionArray)
+  }
 }
 
 const mastermind = (guess) => {
   solution = 'abcd'; // Comment this out to generate a random solution
   // your code here
+  if(guess == solution){
+    console.log(`You guess it ${solution}`);
+  }
 }
 
 
