@@ -141,4 +141,6 @@ How do i make it Show only one and not every single time in finds one?
 The pinPoint is suppose to return every single correct letter even when they are not in the right place?
 
 When is push suppose to be place? 
+
+Master has two functions previously mention are they affecting each other? specially the null part 
 --------------------------------*/
