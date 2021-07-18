@@ -28,33 +28,67 @@ const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
+const correctLetterCounter = (guess) => {
+  //solution = "abcd";
+  const solutionArray = solution.split('');
+  //console.log(`Solution is split in to strings ${solutionArray}`);
+  let guessArray = guess.split('');
+  //console.log(`The guess is split in to arrays ${guessArray}`);
+  let correctLetterLocations = 0;
+  for(let i = 0; i < solutionArray.length; i++){
+    //console.log(`Show me the index of each letter in solution: ${solutionArray[i]} ${solutionArray.indexOf(solutionArray[i])} `);
+    //console.log(`Show me the index of each letter in guess: ${guessArray[i]} ${guessArray.indexOf(guessArray[i])}`);
+      if(solutionArray[i] == guessArray[i] ){
+        correctLetterLocations += 1;
+        console.log("correctLetterLocations: " + correctLetterLocations);
+        solutionArray[i] = null; 
+      }
+    }
+}
+
+const pinPoint = (guess) =>  {
+  //solution = 'abcd'
+  const solutionArray = solution.split('')
+  //console.log(`Solution is split in to strings ${solutionArray}`);
+  let guessArray = guess.split('');
+  //console.log(`The guess is split in to arrays ${guessArray}`);
+  let correctLetters = 0;
+  for(let i = 0; i < solutionArray.length; i++){
+   if(guessArray[i] == solutionArray[i]){
+    //console.log(`this positions match: ${guessArray.indexOf(guessArray[i])}`)
+    let targetIndex = guessArray.indexOf(guessArray[i])
+    //console.log(`The correct letters location ${targetIndex}`);
+    correctLetters =+ 1;
+    console.log(`correct Letters position: ${correctLetters}`);
+    solutionArray[i] = null;
+   }
+  }
+}
+
 const generateHint = (guess) =>  {
   /*-----
   The split() method divides a String into an ordered list of substrings,
    puts these substrings into an array, and returns the array.
   -------*/
   // your code here
-  let solutionArray = solution.split('');
-  let guessArray = guess.split('');
-  let correctLetterLocations = 0;
-  let correctLetter = 0;
-  for(let i = 0; i < solutionArray.length; i++){
-      if(solutionArray.indexOf(i) == guessArray.indexOf(i)){
-        1 += correctLetterLocations
-        console.log(correctLetterLocation);
-        null =+ solutionArray 
-      }
+  correctLetterCounter(guess)
+  pinPoint(guess)
   }
-  for(let i = 0; i < solutionArray.length; i++){
-      if(guessArray.indexOf() == solutionArray)
-  }
-}
 
 const mastermind = (guess) => {
   solution = 'abcd'; // Comment this out to generate a random solution
   // your code here
   if(guess == solution){
-    console.log(`You guess it ${solution}`);
+    //console.log(`You guessed it ${solution}`);
+    //console.log(`You guessed it! ${solution}`);
+    return "You guessed it!"
+  }
+  else{
+    //Question for tomorrow -------------
+    let hint = generateHint(guess)
+    hint.push("guess")
+    getPrompt()
+    console.log(hint);
   }
 }
 
@@ -62,6 +96,9 @@ const mastermind = (guess) => {
 const getPrompt = () =>  {
   rl.question('guess: ', (guess) => {
     mastermind(guess);
+    console.log(`Player guessed ${guess}`);
+    //let guessArray = guess.split('')
+    //console.log(`The guess is split in to arrays ${guessArray}`);
     printBoard();
     getPrompt();
   });
