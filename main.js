@@ -40,7 +40,7 @@ const correctLetterCounter = (guess) => {
     //console.log(`Show me the index of each letter in guess: ${guessArray[i]} ${guessArray.indexOf(guessArray[i])}`);
       if(solutionArray[i] == guessArray[i] ){
         correctLetterLocations += 1;
-        console.log("correctLetterLocations: " + correctLetterLocations);
+        console.log("correctLetterCounter: " + correctLetterLocations);
         solutionArray[i] = null; 
       }
     }
@@ -57,7 +57,7 @@ const pinPoint = (guess) =>  {
    if(guessArray[i] == solutionArray[i]){
     //console.log(`this positions match: ${guessArray.indexOf(guessArray[i])}`)
     let targetIndex = guessArray.indexOf(guessArray[i])
-    //console.log(`The correct letters location ${targetIndex}`);
+    console.log(`The correct letters location ${targetIndex}`);
     correctLetters =+ 1;
     console.log(`correct Letters position: ${correctLetters}`);
     solutionArray[i] = null;
@@ -133,3 +133,12 @@ if (typeof describe === 'function') {
   generateSolution();
   getPrompt();
 }
+
+/*------------------------------
+correct Letter Counter is showing correct number of letters on the right place
+How do i make it Show only one and not every single time in finds one?
+
+The pinPoint is suppose to return every single correct letter even when they are not in the right place?
+
+When is push suppose to be place? 
+--------------------------------*/
