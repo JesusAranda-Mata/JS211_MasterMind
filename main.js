@@ -40,7 +40,7 @@ const correctLetterCounter = (guess) => {
     //console.log(`Show me the index of each letter in guess: ${guessArray[i]} ${guessArray.indexOf(guessArray[i])}`);
       if(solutionArray[i] == guessArray[i] ){
         correctLetterLocations += 1;
-        console.log("correctLetterCounter: " + correctLetterLocations);
+        //console.log("correct Letter Counter: " + correctLetterLocations);
         solutionArray[i] = null; 
       }
     }
@@ -57,9 +57,9 @@ const pinPoint = (guess) =>  {
    if(guessArray[i] == solutionArray[i]){
     //console.log(`this positions match: ${guessArray.indexOf(guessArray[i])}`)
     let targetIndex = guessArray.indexOf(guessArray[i])
-    console.log(`The correct letters location ${targetIndex}`);
+    //console.log(`The correct letters location ${targetIndex}`);
     correctLetters =+ 1;
-    console.log(`correct Letters position: ${correctLetters}`);
+    console.log(`correct Letters: ${correctLetters}`);
     solutionArray[i] = null;
    }
   }
@@ -85,10 +85,10 @@ const mastermind = (guess) => {
   }
   else{
     //Question for tomorrow -------------
-    let hint = generateHint(guess)
-    hint.push("guess")
-    getPrompt()
-    console.log(hint);
+    // let hint = generateHint(guess)
+    // hint.push("guess")
+    // getPrompt()
+    // console.log(hint);
   }
 }
 
