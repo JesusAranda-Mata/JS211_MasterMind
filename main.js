@@ -14,6 +14,9 @@ let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 const printBoard = () =>  {
   for (let i = 0; i < board.length; i++) {
     console.log(board[i]);
+    if(board.length == 10){
+      return "Game over!"
+    }
   }
 }
 
@@ -28,10 +31,13 @@ const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
+
+/*
+
 const correctLetterCounter = (guess) => {
   //solution = "abcd";
   const solutionArray = solution.split('');
-  //console.log(`Solution is split in to strings ${solutionArray}`);
+  console.log(`Solution is split in to strings ${solutionArray}`);
   let guessArray = guess.split('');
   //console.log(`The guess is split in to arrays ${guessArray}`);
   let correctLetterLocations = 0;
@@ -39,12 +45,16 @@ const correctLetterCounter = (guess) => {
     //console.log(`Show me the index of each letter in solution: ${solutionArray[i]} ${solutionArray.indexOf(solutionArray[i])} `);
     //console.log(`Show me the index of each letter in guess: ${guessArray[i]} ${guessArray.indexOf(guessArray[i])}`);
       if(solutionArray[i] == guessArray[i] ){
-        correctLetterLocations += 1;
-        //console.log("correct Letter Counter: " + correctLetterLocations);
+        correctLetterLocations ++;
+        console.log("correct Letter Counter: " + correctLetterLocations);
         solutionArray[i] = null; 
+        //console.log(`Show me the new solution array ${solutionArray}`);
+        return correctLetterLocations
       }
     }
 }
+
+
 
 const pinPoint = (guess) =>  {
   //solution = 'abcd'
@@ -54,16 +64,20 @@ const pinPoint = (guess) =>  {
   //console.log(`The guess is split in to arrays ${guessArray}`);
   let correctLetters = 0;
   for(let i = 0; i < solutionArray.length; i++){
-   if(guessArray[i] == solutionArray[i]){
+    let letterFinder = solutionArray.includes(guessArray[i])
+    if(letterFinder == true){
     //console.log(`this positions match: ${guessArray.indexOf(guessArray[i])}`)
     let targetIndex = guessArray.indexOf(guessArray[i])
     //console.log(`The correct letters location ${targetIndex}`);
     correctLetters =+ 1;
     console.log(`correct Letters: ${correctLetters}`);
-    solutionArray[i] = null;
+    solutionArray[targetIndex] = null;
+    console.log(`Show me the array after pinPoint ${solutionArray}`);
+    return correctLetters
    }
   }
 }
+*/
 
 const generateHint = (guess) =>  {
   /*-----
@@ -71,9 +85,43 @@ const generateHint = (guess) =>  {
    puts these substrings into an array, and returns the array.
   -------*/
   // your code here
-  correctLetterCounter(guess)
-  pinPoint(guess)
+  const solutionArray = solution.split('');
+  //console.log(`Solution is split in to strings ${solutionArray}`);
+  let guessArray = guess.split('');
+  //console.log(`The guess is split in to arrays ${guessArray}`);
+  let correctLetterLocations = 0;
+  let correctLetters = 0;
+  for(let i = 0; i < solutionArray.length; i++){
+    //console.log(`Show me the index of each letter in solution: ${solutionArray[i]} ${solutionArray.indexOf(solutionArray[i])} `);
+    //console.log(`Show me the index of each letter in guess: ${guessArray[i]} ${guessArray.indexOf(guessArray[i])}`);
+      if(solutionArray[i] == guessArray[i] ){
+        correctLetterLocations ++;
+        //console.log("correct Letter Counter: " + correctLetterLocations);
+        solutionArray[i] = null;
+        //let newSolutionArray = guessArray 
+        //console.log(`Show me the new solution array ${solutionArray}`);
+        //return correctLetterLocations
+      }
+    }
+  for(let b = 0; b <= solutionArray.length; b++){
+    //console.log(`Solution array after clc: ${solutionArray}`);
+    let letterFinder = solutionArray.find(element => element == guessArray[b])
+    let letterKeeper = solutionArray.includes(guessArray[b])
+    if(letterFinder == guessArray[b]){ // && letterKeeper !== answerArray[b]){
+    //console.log(`this positions match: ${guessArray.indexOf(guessArray[i])}`)
+    let targetIndex = guessArray.indexOf(guessArray[b])
+    //console.log(`The correct letters location ${targetIndex}`);
+    correctLetters ++;
+    //console.log(`correct Letters: ${correctLetters}`);
+    solutionArray[targetIndex] = null
+    //console.log(`Show me the array after pinPoint ${solutionArray}`);
+    //return correctLetters
+   }
+  } 
+  return "Hint: " + correctLetterLocations + "-" + correctLetters
+  //console.log("Hint: " + correctLetterLocations + "-" + correctLetters)
   }
+  
 
 const mastermind = (guess) => {
   solution = 'abcd'; // Comment this out to generate a random solution
@@ -84,22 +132,19 @@ const mastermind = (guess) => {
     return "You guessed it!"
   }
   else{
-    //Question for tomorrow -------------
-    // let hint = generateHint(guess)
-    // hint.push("guess")
-    // getPrompt()
-    // console.log(hint);
+    getPrompt()
+    board.push(generateHint(guess))
   }
 }
-
 
 const getPrompt = () =>  {
   rl.question('guess: ', (guess) => {
     mastermind(guess);
-    console.log(`Player guessed ${guess}`);
+    //console.log(`Player guessed ${guess}`);
     //let guessArray = guess.split('')
     //console.log(`The guess is split in to arrays ${guessArray}`);
     printBoard();
+    //generateHint(guess);
     getPrompt();
   });
 }
@@ -135,12 +180,6 @@ if (typeof describe === 'function') {
 }
 
 /*------------------------------
-correct Letter Counter is showing correct number of letters on the right place
-How do i make it Show only one and not every single time in finds one?
 
-The pinPoint is suppose to return every single correct letter even when they are not in the right place?
 
-When is push suppose to be place? 
-
-Master has two functions previously mention are they affecting each other? specially the null part 
 --------------------------------*/
