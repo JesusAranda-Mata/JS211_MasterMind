@@ -106,7 +106,7 @@ const generateHint = (guess) =>  {
   for(let b = 0; b <= solutionArray.length; b++){
     //console.log(`Solution array after clc: ${solutionArray}`);
     let letterFinder = solutionArray.find(element => element == guessArray[b])
-    let letterKeeper = solutionArray.includes(guessArray[b])
+    //let letterKeeper = solutionArray.includes(guessArray[b])
     if(letterFinder == guessArray[b]){ // && letterKeeper !== answerArray[b]){
     //console.log(`this positions match: ${guessArray.indexOf(guessArray[i])}`)
     let targetIndex = guessArray.indexOf(guessArray[b])
@@ -132,7 +132,7 @@ const mastermind = (guess) => {
     return "You guessed it!"
   }
   else{
-    getPrompt()
+    //getPrompt()
     board.push(generateHint(guess))
   }
 }
