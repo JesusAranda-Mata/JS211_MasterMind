@@ -92,6 +92,7 @@ const generateHint = (guess) =>  {
   let correctLetterLocations = 0;
   let correctLetters = 0;
   for(let i = 0; i < solutionArray.length; i++){
+    console.log(i);
     //console.log(`Show me the index of each letter in solution: ${solutionArray[i]} ${solutionArray.indexOf(solutionArray[i])} `);
     //console.log(`Show me the index of each letter in guess: ${guessArray[i]} ${guessArray.indexOf(guessArray[i])}`);
       if(solutionArray[i] == guessArray[i] ){
@@ -103,22 +104,21 @@ const generateHint = (guess) =>  {
         //return correctLetterLocations
       }
     }
-  for(let b = 0; b <= solutionArray.length; b++){
+  for(let b = 0; b < solutionArray.length; b++){
+    console.log(b);
     //console.log(`Solution array after clc: ${solutionArray}`);
-    let letterFinder = solutionArray.find(element => element == guessArray[b])
-    //let letterKeeper = solutionArray.includes(guessArray[b])
-    if(letterFinder == guessArray[b]){ // && letterKeeper !== answerArray[b]){
+    let targetIndex = guessArray.indexOf(solutionArray[b])
+    if(targetIndex > -1){
     //console.log(`this positions match: ${guessArray.indexOf(guessArray[i])}`)
-    let targetIndex = guessArray.indexOf(guessArray[b])
     //console.log(`The correct letters location ${targetIndex}`);
     correctLetters ++;
     //console.log(`correct Letters: ${correctLetters}`);
-    solutionArray[targetIndex] = null
-    //console.log(`Show me the array after pinPoint ${solutionArray}`);
+    solutionArray[b] = null
+    console.log(`Show me the array after pinPoint ${solutionArray}`);
     //return correctLetters
    }
   } 
-  return "Hint: " + correctLetterLocations + "-" + correctLetters
+  return correctLetterLocations + "-" + correctLetters
   //console.log("Hint: " + correctLetterLocations + "-" + correctLetters)
   }
   
